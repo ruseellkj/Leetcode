@@ -31,6 +31,7 @@ string isArmstrong(int n)
 
 int main()
 {
-    int n = 153;
+    int n;
+    cin >> n;
     cout << "Is the number armstrong number? " << isArmstrong(n);
 }
