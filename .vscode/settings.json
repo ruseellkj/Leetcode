@@ -3,6 +3,13 @@
         "iostream": "cpp",
         "queue": "cpp",
         "stack": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "__split_buffer": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "string": "cpp",
+        "vector": "cpp",
+        "filesystem": "cpp",
+        "iosfwd": "cpp"
     }
 }
