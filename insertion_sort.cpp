@@ -18,6 +18,7 @@ using namespace std;
 //                 break;
 //             }
 //         }
+//         arr[j+1] = current
 //     }
 // }
 
