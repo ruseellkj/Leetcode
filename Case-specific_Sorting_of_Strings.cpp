@@ -52,7 +52,7 @@ class Solution
     string caseSort(string str, int n)
     {
         // your code here
-        // make two arrays/vectors and push_back the lower and upper also sort it 
+        // make two strings and push_back the lower and upper also sort it 
         string lower = "";
         string upper = "";
         for(int i =0; i<n; i++){

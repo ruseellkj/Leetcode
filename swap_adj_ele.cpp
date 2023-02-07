@@ -9,6 +9,7 @@ void print_array(int arr[], int n){
 
 void swap_adj_ele(int arr[], int n){
     for(int i =0; i<n; i+=2){
+        // checking the next element is lesser than the array size
         if(i+1 < n){
             swap(arr[i],arr[i+1]);
         }
