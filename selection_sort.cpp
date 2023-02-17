@@ -7,6 +7,7 @@ public:
     void selectionSort(int arr[], int n)
     {
        //code here
+    //    or from 1 to n  its the same
         for(int i=0; i<n-1; i++){
             int min_index = i;
             for(int j = i+1; j<n; j++){
