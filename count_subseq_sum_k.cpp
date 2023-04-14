@@ -47,7 +47,7 @@ int main()
 	for (int i = 0; i < n ; i++) {
 		cin >> arr[i];
 	}
-	int sum = 2;
+	int sum = 10;
 	// vector<int> ds;
 	cout << printS(0, 0, sum, arr, n);
 
