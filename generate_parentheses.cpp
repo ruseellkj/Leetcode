@@ -1,5 +1,8 @@
 // generate parentheses -- leetcode qs
 // Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+#include <bits/stdc++.h>
+using namespace std;
+
 int main() {
 #ifndef ONLINE_JUDGE
 	// for getting the input from input.txt
