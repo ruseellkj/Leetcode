@@ -16,6 +16,7 @@ void PrintC(int ind, int target, vector<int> ds, int n, int arr[]) {
 		}
 		return;
 	}
+
 	// take condition
 	if (arr[ind] <= target) {
 		ds.push_back(arr[ind]);
