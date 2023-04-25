@@ -1,6 +1,9 @@
 #include <bits/stdc++.h>
+using namespace std;
+
 
 int f(int ind, vector<int> &nums) {
+    //base condition
     if (ind == 0) return nums[ind];
 
     if (ind < 0) return 0;
