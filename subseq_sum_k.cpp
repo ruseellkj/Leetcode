@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 void printS(int ind, vector<int> &ds, int s, int sum, int arr[], int n) {
 	// the base condition
 	if (ind == n) {

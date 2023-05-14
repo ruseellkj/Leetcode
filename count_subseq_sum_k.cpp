@@ -25,7 +25,7 @@ int printS(int ind, int s, int sum, int arr[], int n) {
 	// ds.pop_back();
 	s -= arr[ind];
 
-	// not take or not pick condition
+	// not take or not  pick condition
 	int r = printS(ind + 1, s, sum, arr, n);
 
 	return l + r;
