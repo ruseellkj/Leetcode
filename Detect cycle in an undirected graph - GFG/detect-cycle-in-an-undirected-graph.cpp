@@ -6,43 +6,33 @@ using namespace std;
 class Solution {
   public:
   
-    bool detectcycle(int src, vector<int> adj[], int vis[]){
-        vis[src] = 1;
-        
-        // make a queue
-        queue<pair<int,int>> q;
-        // parent of the src will be -1 always
-        q.push({src,-1});
-        
-        while(!q.empty()){
-            int node = q.front().first;
-            int parent = q.front().second;
-            q.pop();
-            
-            // traversing the adj list
-            for(auto it : adj[node]){
-                if(!vis[it]){
-                    vis[it] = 1;
-                    q.push({it,node});
-                }
-                else if(parent != it){
-                    // cycle is detected
-                    return true;
-                }
-            }
-        }
-        return false;
-        
-        
-    }
-    // Function to detect cycle in an undirected graph.
-    bool isCycle(int V, vector<int> adj[]) {
-        // Code here
-        // as it is 0-based indexing
-        int vis[V] = {0};
-        for(int i=0; i<V; i++){
-            if(!vis[i]){
-                if(detectcycle(i,adj,vis) == true){
+    bool dfs(int s, vector<int> adj[], int visited[],int parent) 
+     {
+         visited[s]=true;
+         for(auto it:adj[s])
+         {
+             if(visited[it]==false)
+             {
+                 if(dfs(it,adj,visited,s))
+                 return true;
+             }
+             else if(it!=parent)
+             {
+                 return true;
+             }
+         }
+         return false;
+     }
+    
+    bool isCycle(int V, vector<int> adj[]) 
+    {
+        int visited[V] = {0};
+        for(int i=0;i<V;i++)
+        {
+            if(visited[i]==false)
+            {
+                if(dfs(i,adj,visited,-1))
+                {
                     return true;
                 }
             }
