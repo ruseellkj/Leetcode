@@ -42,7 +42,7 @@ class Solution {
         int vis[V] = {0};
         for(int i=0; i<V; i++){
             if(!vis[i]){
-                if(detectcycle(i,adj,vis)){
+                if(detectcycle(i,adj,vis) == true){
                     return true;
                 }
             }
