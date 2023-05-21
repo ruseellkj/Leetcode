@@ -8,10 +8,10 @@ class Solution {
   
     bool dfs(int s, vector<int> adj[], int visited[],int parent) 
      {
-         visited[s]=true;
+         visited[s]=1;
          for(auto it:adj[s])
          {
-             if(visited[it]==false)
+             if(!visited[it])
              {
                  if(dfs(it,adj,visited,s))
                  return true;
@@ -29,7 +29,7 @@ class Solution {
         int visited[V] = {0};
         for(int i=0;i<V;i++)
         {
-            if(visited[i]==false)
+            if(!visited[i])
             {
                 if(dfs(i,adj,visited,-1))
                 {
