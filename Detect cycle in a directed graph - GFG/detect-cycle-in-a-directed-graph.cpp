@@ -6,24 +6,24 @@ using namespace std;
 class Solution {
   public:
   
-    bool dfs(int node, vector<int> adj[], int vis[], int pathV[]){
-        vis[node] = 1;
-        pathV[node] = 1;
+    bool dfs(int node, vector<int> adj[], int vis[]){
+        vis[node] = 2;
+        // pathV[node] = 1;
         
         // traversing the adj nodes
         for(auto it : adj[node]){
             if(!vis[it]){
-                if(dfs(it, adj, vis, pathV) == true){
+                if(dfs(it, adj, vis) == true){
                     return true;
                 }
             }
             // else if its visited already and pathV as well
-            else if(pathV[it]){
+            else if(vis[it] == 2){
                 return true;
             }
         }
         
-        pathV[node] = 0;
+        vis[node] = 1;
         return false;
     }
     // Function to detect cycle in a directed graph.
@@ -32,11 +32,11 @@ class Solution {
         
         // making vis and pathV array
         int vis[V] = {0};
-        int pathV[V] = {0};
+        // int pathV[V] = {0};
         
         for(int i =0; i<V; i++){
             if(!vis[i]){
-                if(dfs(i, adj, vis, pathV) == true ){
+                if(dfs(i, adj, vis) == true ){
                     return true;
                 }
             }
