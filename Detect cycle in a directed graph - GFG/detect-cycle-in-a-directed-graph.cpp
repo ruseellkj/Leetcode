@@ -5,45 +5,43 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-  
-    bool dfs(int node, vector<int> adj[], int vis[]){
-        vis[node] = 2;
-        // pathV[node] = 1;
-        
-        // traversing the adj nodes
-        for(auto it : adj[node]){
-            if(!vis[it]){
-                if(dfs(it, adj, vis) == true){
-                    return true;
-                }
-            }
-            // else if its visited already and pathV as well
-            else if(vis[it] == 2){
-                return true;
-            }
-        }
-        
-        vis[node] = 1;
-        return false;
-    }
     // Function to detect cycle in a directed graph.
-    bool isCyclic(int V, vector<int> adj[]) {
+    bool isCyclic(int V, vector<int> adj[])
+    {
         // code here
-        
-        // making vis and pathV array
-        int vis[V] = {0};
-        // int pathV[V] = {0};
-        
-        for(int i =0; i<V; i++){
-            if(!vis[i]){
-                if(dfs(i, adj, vis) == true ){
-                    return true;
-                }
-            }
-        }
-        return false;
-        
-        
+       int indegree[V] = {0};
+	   for(int i =0; i<V; i++)
+	    {
+	       for(auto it : adj[i]){
+	           indegree[it]++; 
+	       }
+	    }
+	   
+	   queue<int> q;
+	   
+	   //inserting all the nodes whose indegree is 0
+	   for(int i=0; i<V; i++){
+	       if(indegree[i] == 0){
+	           q.push(i);
+	       }
+	   }
+	   
+	   int cnt =0;
+	   while(!q.empty()){
+	       int node = q.front();
+	       q.pop();
+           cnt++;
+	       
+	       //traverse the neighbors in the adj list
+	       for(auto it : adj[node]){
+	           indegree[it]--;
+	           if(indegree[it] == 0){
+	               q.push(it);
+	           }
+	       }
+	   }
+	   if(cnt == V) return false;
+	   return true;
     }
 };
 
