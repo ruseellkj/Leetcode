@@ -12,7 +12,7 @@ class Solution {
         vis[node] = 1;
         
         for(auto it:adj[node]){
-            if(dist[it]>dist[node]+1)
+            if(dist[node]+1<dist[it])
                 dist[it] = dist[node]+1;
             if(!vis[it]){
                 dfs(it,adj,vis,dist);
@@ -22,6 +22,7 @@ class Solution {
     }
   public:
     vector<int> shortestPath(vector<vector<int>>& edges, int N,int M, int src){
+        // mk the graph
         vector<int>adj[N];
         for(int i =0; i<M; i++){
             int u = edges[i][0];
@@ -35,6 +36,7 @@ class Solution {
         dist[src] = 0;
         
         dfs(src,adj,vis,dist);
+        
         for(int i=0;i<N;i++){
             if(dist[i] == 1e9){
                 dist[i] = -1;
