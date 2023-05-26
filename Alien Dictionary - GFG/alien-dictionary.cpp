@@ -8,70 +8,71 @@ using namespace std;
 // User function Template for C++
 
 class Solution{
-    private:
-    vector<int> toposort(int K, vector<int> adj[]){
-        // make the indegree array
-        int indegree[K] = {0};
-        for(int i =0; i<K; i++){
-            for(auto it : adj[i]){
-                indegree[it]++;
-            }
-        }
-        
-        vector<int> topo;
-        queue<int> q;
-        
-        for(int i =0; i<K; i++){
-            if(indegree[i] == 0){
-                q.push(i);
-            }
-        }
-        
-        while(!q.empty()){
-            int node = q.front();
-            q.pop();
-            topo.push_back(node);
-            
-            // traversing the node neighbors 
-            for(auto it : adj[node]){
-                indegree[it]--;
-                if(indegree[it] == 0){
-                    q.push(it);
-                }
-            }
-            
-        }
-        
-        return topo;
-        
-    }
     public:
+    void dfs(int node, vector<int> adj[], vector<int>& vis, stack<int>& st){
+        
+        vis[node] = 1;
+        
+        // traversing the neighbors of the node
+        for(auto it: adj[node])
+        {
+            if(!vis[it]){
+                dfs(it, adj, vis, st);
+            }
+        }
+        // stack contains all the nodes in the order 0 1 2 3 instead of a b c d 
+        st.push(node);
+    }
+    
     string findOrder(string dict[], int N, int K) {
         //code here
         // make the adj list
-        vector<int>adj[K];
-        for(int i =0; i<N-1; i++){
+        vector<int> adj[K];
+        
+        for(int i = 0; i < N - 1; i++){
             string s1 = dict[i];
-            string s2 = dict[i+1];
-            
-            int len = min(s1.size(), s2.size());
-            for(int ptr =0; ptr<len; ptr++){
+            string s2 = dict[i + 1];
+            int len = min(s1.length(), s2.length());
+            for(int ptr = 0; ptr < len; ptr++){
                 if(s1[ptr] != s2[ptr]){
-                    adj[s1[ptr]-'a'].push_back(s2[ptr]-'a');
+                    adj[s1[ptr] - 'a'].push_back(s2[ptr] - 'a');
                     break;
                 }
             }
         }
         
+        // make the vis array and mark all of them zero
+        vector<int>vis(K,0);
+        stack<int> st;
+        
+        // to get the res in vector form
+        vector<int> topo;
+        
+        for(int i = 0; i < K; i++)
+        {
+            if(!vis[i])
+            {
+                dfs(i, adj, vis, st);
+            }
+        }
+        
+        while(!st.empty()){
+            int node1 = st.top();
+            topo.push_back(node1);
+            st.pop();
+        }
+        
         string ans = "";
-        vector<int> topo = toposort(K,adj);
         for(auto it : topo){
             ans = ans + char(it+'a');
         }
-        return ans;
         
+    
+        return ans;
     }
 };
+
+
 
 //{ Driver Code Starts.
 string order;
