@@ -11,32 +11,40 @@ class Solution
     vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
     {
         // Code here
-        // mk the min-heap
-        priority_queue<pair<int,int>,vector<pair<int,int> >,greater<pair<int,int>>> pq;
+        // using the set data structure
+        // mk a set 
+        set<pair<int,int>> st;
         // mk the dist arr
         vector<int> dist(V,1e9);
-        // mark the source dist as 0
-        dist[S] = 0;
-        pq.push({0,S});
-        while(!pq.empty()){
-            int dis = pq.top().first;
-            int node = pq.top().second;
-            pq.pop();
+        dist[S]=0;
+        st.insert({0,S});
+        
+        while(!st.empty()){
+            // this gives the value of the top/begin of the set
+            auto it = *(st.begin());
+            int dis = it.first;
+            int node = it.second;
+            // remove/erase
+            st.erase(it);
             
-            // traversign the neighbors
+            // traverse/iterate through the nieghbors
             for(auto it : adj[node]){
                 int adjnode = it[0];
                 int edgeweight = it[1];
                 
                 if(dis + edgeweight < dist[adjnode]){
+                    // erase if it already exist
+                    if(dist[adjnode] != 1e9){
+                        // this means there was someone who updated
+                        // the dist from 1e9 to <1e9
+                        st.erase({dist[adjnode],adjnode});
+                    }
                     dist[adjnode] = dis + edgeweight;
-                    pq.push({dist[adjnode],adjnode});
+                    st.insert({dist[adjnode], adjnode});
                 }
             }
         }
-        
         return dist;
-        
         
     }
 };
