@@ -53,9 +53,10 @@ class Solution {
             return {-1};
         }
         vector<int> ans;
-        while(parent[n] != n){
-            ans.push_back(n);
-            n = parent[n];
+        int nd = n;
+        while(parent[nd] != nd){
+            ans.push_back(nd);
+            nd = parent[nd];
         }
         ans.push_back(1);
         reverse(ans.begin(),ans.end());
