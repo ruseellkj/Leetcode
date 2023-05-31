@@ -12,34 +12,36 @@ class Solution {
   public:
     int minimumMultiplications(vector<int>& arr, int start, int end) {
         // code here
+        // using simple bfs
         int mod = 100000;
-        
+        // mk the vis arr
+        vector<int> vis(mod,0);
+        vis[start] = 1;
         // mk the queue
         // {steps,node}
         queue<pair<int,int>> q;
-        
-        // mk the dist arr
-        vector<int> dist(mod,1e9);
-        
         q.push({0,start});
         
         while(!q.empty()){
             auto it = q.front();
+            q.pop();
             int steps = it.first;
             int node = it.second;
-            q.pop();
             
-            // traversing the arr and multiplying the node with it
-            for(auto it : arr){
-                int num = (it*node)%mod;
-                if(steps + 1 < dist[num]){
-                    dist[num] = steps + 1;
-                    if(num == end) return dist[num];
-                    q.push({steps+1,num});
-                }
-            }
+            
+            if(node == end) return steps;
+            // traversing the arr
+            for (int i = 0; i < arr.size(); i++)
+		    {
+			    int x = (arr[i] * node) % mod;
+			    if (vis[x])
+				    continue;
+			    vis[x] = 1;
+			    q.push({steps + 1, x});
+		    }
         }
         return -1;
+        
     }
 };
 
