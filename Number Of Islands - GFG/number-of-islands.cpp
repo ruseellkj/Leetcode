@@ -77,6 +77,10 @@ class Solution {
         vector<vector<int>> vis(n, vector<int>(m,0));
         int cnt = 0;
         vector<int> ans;
+        
+        int delrow[] = {-1,0,+1,0};
+        int delcol[] = {0,+1,0,-1};
+        
         for(auto it : operators){
             int row = it[0];
             int col = it[1];
@@ -88,9 +92,6 @@ class Solution {
             }
             vis[row][col] = 1;
             cnt++;
-            
-            int delrow[] = {-1,0,+1,0};
-            int delcol[] = {0,+1,0,-1};
             
             // traversing in all the 4-directions
             for(int i=0; i<4; i++){
