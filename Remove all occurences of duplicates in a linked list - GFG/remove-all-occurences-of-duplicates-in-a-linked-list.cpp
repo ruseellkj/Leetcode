@@ -53,6 +53,7 @@ class Solution
         }
         head = dummy->next;
         delete dummy;
+
         return head;
     }
 };
