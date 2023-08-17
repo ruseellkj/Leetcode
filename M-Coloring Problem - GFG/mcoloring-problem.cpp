@@ -25,7 +25,7 @@ public:
         for(int col = 1; col <=m; col++){
             if(isPossible(node,color,graph,col,n)){
                 color[node] = col;
-                if(solve(node+1,color,graph,m,n) == true){
+                if(solve(node+1,color,graph,m,n)){
                     return true;
                 }
                 color[node] = 0; //reset the color of that node 
